@@ -6,35 +6,38 @@
 
 param(
     [string]$Repo = 'Domanffe/clisearch',
-    [string]$Branch
+    [string]$Branch = 'master'
 )
 
 $ErrorActionPreference = 'Stop'
 
-function Get-DefaultBranch {
-    param([string]$Repository)
-
-    $apiUrl = "https://api.github.com/repos/$Repository"
-    return (Invoke-RestMethod -Uri $apiUrl -Headers @{ 'User-Agent' = 'clisearch-installer' }).default_branch
-}
-
-if (-not $Branch) {
-    $Branch = Get-DefaultBranch -Repository $Repo
-}
-
-$ZipUrl = "https://github.com/$Repo/archive/refs/heads/$Branch.zip"
-$TempZip = Join-Path $env:TEMP "clisearch-$Branch.zip"
-$TempExtract = Join-Path $env:TEMP "clisearch-$Branch-extract"
+$TempZip = Join-Path $env:TEMP 'clisearch-install.zip'
+$TempExtract = Join-Path $env:TEMP 'clisearch-install-extract'
+$BranchesToTry = @($Branch, 'master', 'main') | Select-Object -Unique
 
 Write-Host "clisearch - remote install"
-Write-Host "  repo: $Repo@$Branch`n"
+Write-Host "  repo: $Repo`n"
 
-Write-Host "  downloading..."
-try {
-    Invoke-WebRequest -Uri $ZipUrl -OutFile $TempZip -UseBasicParsing
-} catch {
-    Write-Error "Failed to download $ZipUrl. Check repo/branch and try again."
+$downloaded = $false
+foreach ($candidate in $BranchesToTry) {
+    $ZipUrl = "https://github.com/$Repo/archive/refs/heads/$candidate.zip"
+    Write-Host "  trying branch: $candidate"
+
+    try {
+        Invoke-WebRequest -Uri $ZipUrl -OutFile $TempZip -UseBasicParsing
+        $Branch = $candidate
+        $downloaded = $true
+        break
+    } catch {
+        Write-Host "  not found: $candidate"
+    }
 }
+
+if (-not $downloaded) {
+    Write-Error "Could not download clisearch archive. Try: git clone https://github.com/$Repo.git"
+}
+
+Write-Host "  using branch: $Branch"
 
 if (Test-Path $TempExtract) {
     Remove-Item $TempExtract -Recurse -Force

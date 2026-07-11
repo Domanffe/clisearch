@@ -24,6 +24,8 @@ cd clisearch
 irm https://raw.githubusercontent.com/Domanffe/clisearch/master/install-remote.ps1 | iex
 ```
 
+Если `irm` выдаёт 404, используйте установку через git (выше) — GitHub CDN иногда отдаёт устаревшую версию скрипта.
+
 ### Удаление
 
 ```powershell
