@@ -21,7 +21,7 @@ cd clisearch
 ### Установка одной командой
 
 ```powershell
-irm https://raw.githubusercontent.com/Domanffe/clisearch/main/install-remote.ps1 | iex
+irm https://raw.githubusercontent.com/Domanffe/clisearch/master/install-remote.ps1 | iex
 ```
 
 ### Удаление

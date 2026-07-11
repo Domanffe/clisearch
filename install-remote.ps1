@@ -1,12 +1,12 @@
 # Install clisearch from GitHub without manual clone.
 # Usage:
-#   irm https://raw.githubusercontent.com/Domanffe/clisearch/main/install-remote.ps1 | iex
+#   irm https://raw.githubusercontent.com/Domanffe/clisearch/master/install-remote.ps1 | iex
 # Or:
 #   .\install-remote.ps1
 
 param(
     [string]$Repo = 'Domanffe/clisearch',
-    [string]$Branch = 'main'
+    [string]$Branch = 'master'
 )
 
 $ErrorActionPreference = 'Stop'
