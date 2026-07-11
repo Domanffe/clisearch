@@ -1,0 +1,37 @@
+{
+  "yt": {
+    "name": "YouTube",
+    "url": "https://www.youtube.com/results?search_query={q}",
+    "home": "https://www.youtube.com/"
+  },
+  "g": {
+    "name": "Google",
+    "url": "https://www.google.com/search?q={q}",
+    "home": "https://www.google.com/"
+  },
+  "gh": {
+    "name": "GitHub",
+    "url": "https://github.com/search?q={q}",
+    "home": "https://github.com/"
+  },
+  "w": {
+    "name": "Wikipedia",
+    "url": "https://en.wikipedia.org/w/index.php?search={q}",
+    "home": "https://en.wikipedia.org/"
+  },
+  "a": {
+    "name": "Amazon",
+    "url": "https://www.amazon.com/s?k={q}",
+    "home": "https://www.amazon.com/"
+  },
+  "r": {
+    "name": "Reddit",
+    "url": "https://www.reddit.com/search/?q={q}",
+    "home": "https://www.reddit.com/"
+  },
+  "so": {
+    "name": "Stack Overflow",
+    "url": "https://stackoverflow.com/search?q={q}",
+    "home": "https://stackoverflow.com/"
+  }
+}

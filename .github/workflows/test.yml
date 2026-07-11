@@ -1,0 +1,17 @@
+name: test
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  dry-run:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: regression tests
+        shell: pwsh
+        run: ./tests/test.ps1
